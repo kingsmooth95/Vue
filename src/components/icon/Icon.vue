@@ -1,15 +1,6 @@
 <template>
     <span class="icon" :class="[newType, size]">
-        <i
-            v-if="!useIconComponent"
-            :class="[newPack, newIcon, newCustomSize, customClass]"/>
-
-        <component
-            v-else
-            :is="useIconComponent"
-            :icon="[newPack, newIcon]"
-            :size="newCustomSize"
-            :class="[customClass]"/>
+        <i :class="[newPack, newIcon, newCustomSize, customClass]"/>
     </span>
 </template>
 
@@ -34,9 +25,17 @@
              * internal icons are always MDI.
              */
             newIcon() {
+                if (!this.both) {
+                    if (this.newPack === 'mdi') {
+                        return `${this.newPack}-${this.icon}`
+                    } else {
+                        return `fa-${this.icon}`
+                    }
+                }
+
                 return this.newPack === 'mdi'
                     ? `${this.newPack}-${this.icon}`
-                    : this.addFAPrefix(this.getEquivalentIconOf(this.icon))
+                    : `fa-${this.getEquivalentIconOf(this.icon)}`
             },
             newPack() {
                 return this.pack || config.defaultIconPack
@@ -65,41 +64,26 @@
             customSizeByPack() {
                 const defaultSize = this.newPack === 'mdi'
                     ? 'mdi-24px'
-                    : this.addFAPrefix('lg')
+                    : 'fa-lg'
                 const mediumSize = this.newPack === 'mdi'
                     ? 'mdi-36px'
-                    : this.addFAPrefix('2x')
+                    : 'fa-2x'
                 const largeSize = this.newPack === 'mdi'
                     ? 'mdi-48px'
-                    : this.addFAPrefix('3x')
+                    : 'fa-3x'
                 switch (this.size) {
                     case 'is-small': return
                     case 'is-medium': return mediumSize
                     case 'is-large': return largeSize
                     default: return defaultSize
                 }
-            },
-            useIconComponent() {
-                return config.defaultIconComponent
             }
         },
         methods: {
-            addFAPrefix(value) {
-                if (this.useIconComponent) {
-                    return value
-                }
-                return `fa-${value}`
-            },
-
             /**
              * Equivalent FA icon name of the MDI.
              */
             getEquivalentIconOf(value) {
-                // Only transform the class if the both prop is set to true
-                if (!this.both) {
-                    return value
-                }
-
                 switch (value) {
                     case 'check': return 'check'
                     case 'information': return 'info-circle'

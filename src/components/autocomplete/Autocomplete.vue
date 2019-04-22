@@ -3,16 +3,14 @@
         <b-input
             v-model="newValue"
             ref="input"
-            type="text"
             :size="size"
             :loading="loading"
             :rounded="rounded"
             :icon="icon"
             :icon-pack="iconPack"
             :maxlength="maxlength"
-            :autocomplete="newAutocomplete"
+            autocomplete="off"
             v-bind="$attrs"
-            @input="onInput"
             @focus="focused"
             @blur="onBlur"
             @keyup.native.esc.prevent="isActive = false"
@@ -85,8 +83,7 @@
             },
             keepFirst: Boolean,
             clearOnSelect: Boolean,
-            openOnFocus: Boolean,
-            customFormatter: Function
+            openOnFocus: Boolean
         },
         data() {
             return {
@@ -94,7 +91,6 @@
                 hovered: null,
                 isActive: false,
                 newValue: this.value,
-                newAutocomplete: this.autocomplete || 'off',
                 isListInViewportVertically: true,
                 hasFocus: false,
                 _isAutocomplete: true,
@@ -275,9 +271,6 @@
             getValue(option) {
                 if (!option) return
 
-                if (typeof this.customFormatter !== 'undefined') {
-                    return this.customFormatter(option)
-                }
                 return typeof option === 'object'
                     ? getValueByPath(option, this.field)
                     : option
@@ -364,11 +357,6 @@
             onBlur(event) {
                 this.hasFocus = false
                 this.$emit('blur', event)
-            },
-            onInput(event) {
-                const currentValue = this.getValue(this.selected)
-                if (currentValue && currentValue === this.newValue) return
-                this.$emit('typing', this.newValue)
             }
         },
         created() {

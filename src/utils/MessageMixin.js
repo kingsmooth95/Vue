@@ -14,7 +14,6 @@ export default {
             type: Boolean,
             default: true
         },
-        message: String,
         type: String,
         hasIcon: Boolean,
         size: String,
@@ -26,7 +25,7 @@ export default {
         },
         duration: {
             type: Number,
-            default: 2000
+            default: 5000
         }
     },
     data() {

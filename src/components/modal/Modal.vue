@@ -50,11 +50,7 @@
             },
             canCancel: {
                 type: [Array, Boolean],
-                default: () => {
-                    return config.defaultModalCanCancel
-                        ? config.defaultModalCanCancel
-                        : ['escape', 'x', 'outside', 'button']
-                }
+                default: () => ['escape', 'x', 'outside', 'button']
             },
             onCancel: {
                 type: Function,

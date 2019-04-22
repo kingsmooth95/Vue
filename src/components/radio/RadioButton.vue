@@ -10,11 +10,8 @@
             <slot/>
             <input
                 v-model="computedValue"
-                tabindex="-1"
                 type="radio"
-                @click.stop
                 :disabled="disabled"
-                :required="required"
                 :name="name"
                 :value="nativeValue">
         </label>
@@ -32,7 +29,6 @@
                 default: 'is-primary'
             },
             disabled: Boolean,
-            required: Boolean,
             name: String,
             size: String
         },

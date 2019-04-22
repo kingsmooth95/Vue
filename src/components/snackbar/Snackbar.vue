@@ -12,7 +12,7 @@
                 class="action"
                 @click="action"
                 :class="type">
-                <button class="button">{{ actionText }}</button>
+                <button class="button is-dark">{{ actionText }}</button>
             </div>
         </div>
     </transition>

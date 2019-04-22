@@ -7,7 +7,6 @@
             <label
                 v-if="label"
                 :for="labelFor"
-                :class="customClass"
                 class="label" >
                 {{ label }}
             </label>
@@ -31,7 +30,7 @@
             <slot/>
         </template>
         <p
-            v-show="newMessage && !horizontal"
+            v-if="newMessage && !horizontal"
             v-html="formattedMessage"
             class="help"
             :class="newType"

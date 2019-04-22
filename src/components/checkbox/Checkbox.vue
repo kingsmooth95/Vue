@@ -8,10 +8,8 @@
         @keydown.prevent.enter.space="$refs.label.click()">
         <input
             v-model="computedValue"
-            tabindex="-1"
             :indeterminate.prop="indeterminate"
             type="checkbox"
-            @click.stop
             :disabled="disabled"
             :required="required"
             :name="name"

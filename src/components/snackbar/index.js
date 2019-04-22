@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Snackbar from './Snackbar'
 
-import config from '../../utils/config'
 import { use, registerComponentProgrammatic } from '../../utils/plugins'
 
 const SnackbarProgrammatic = {
@@ -12,7 +11,7 @@ const SnackbarProgrammatic = {
 
         const defaultParam = {
             type: 'is-success',
-            position: config.defaultSnackbarPosition || 'is-bottom-right',
+            position: 'is-bottom-right',
             message
         }
         if (params.parent) {

@@ -83,10 +83,7 @@ export default {
         focus() {
             if (this.$data._elementRef === undefined) return
 
-            this.$nextTick(() => {
-                const el = this.$el.querySelector(this.$data._elementRef)
-                if (el) el.focus()
-            })
+            this.$nextTick(() => this.$el.querySelector(this.$data._elementRef).focus())
         },
 
         onBlur($event) {

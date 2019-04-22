@@ -56,12 +56,10 @@ const router = new Router({
                 route('documentation/switch', 'components/switch/Switch'),
                 route('documentation/datepicker', 'components/datepicker/Datepicker'),
                 route('documentation/timepicker', 'components/timepicker/Timepicker'),
-                route('documentation/clockpicker', 'components/clockpicker/Clockpicker'),
                 route('documentation/taginput', 'components/taginput/Taginput'),
                 route('documentation/upload', 'components/upload/Upload'),
                 route('documentation/table', 'components/table/Table'),
                 route('documentation/pagination', 'components/pagination/Pagination'),
-                route('documentation/button', 'components/button/Button'),
                 // Extensions
                 route('extensions', 'Extensions'),
                 route('extensions/cleavejs', 'extensions/cleavejs/Cleavejs'),

@@ -1,5 +1,4 @@
 $snackbar-background-color: $dark !default;
-$snackbar-color: $dark-invert !default;
 
 .notices {
     position: fixed;
@@ -41,7 +40,7 @@ $snackbar-color: $dark-invert !default;
         border-radius: $radius;
         pointer-events: auto;
         background: $snackbar-background-color;
-        color: $snackbar-color;
+        color: $dark-invert;
         min-height: 3em;
         .text {
             padding: 0.5em 1em;
@@ -53,14 +52,6 @@ $snackbar-color: $dark-invert !default;
             .button {
                 font-weight: $weight-semibold;
                 text-transform: uppercase;
-                background: $snackbar-background-color;
-                border: transparent;
-            }
-            .button:hover {
-                background: darken($snackbar-background-color, 5%);
-            }
-            .button:active {
-                background: darken($snackbar-background-color, 5%);
             }
             @each $name, $pair in $colors {
                 $color: nth($pair, 1);
@@ -82,13 +73,9 @@ $snackbar-color: $dark-invert !default;
             overflow: hidden;
         }
     }
-    .notification {
-        max-width: 600px;
-    }
 
     .toast,
-    .snackbar,
-    .notification {
+    .snackbar {
         // Modifiers
         &.is-top, &.is-bottom {
             align-self: center;

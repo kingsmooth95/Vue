@@ -34,9 +34,7 @@
                 :size="size"
                 :disabled="disabled"
                 :loading="loading"
-                :autocomplete="nativeAutocomplete"
                 :keep-first="!allowNew"
-                @typing="onTyping"
                 @focus="onFocus"
                 @blur="customOnBlur"
                 @keydown.native="keydown"
@@ -109,7 +107,6 @@
                 default: 'value'
             },
             autocomplete: Boolean,
-            nativeAutocomplete: String,
             disabled: Boolean,
             ellipsis: Boolean,
             closable: {
@@ -118,7 +115,7 @@
             },
             confirmKeyCodes: {
                 type: Array,
-                default: () => [13, 188]
+                default: () => [13, 188, 9]
             },
             removeOnKeys: {
                 type: Array,
@@ -219,6 +216,10 @@
                 this.tags = value
             },
 
+            newTag(value) {
+                this.$emit('typing', value.trim())
+            },
+
             hasInput() {
                 if (!this.hasInput) this.onBlur()
             }
@@ -300,10 +301,6 @@
                     event.preventDefault()
                     this.addTag()
                 }
-            },
-
-            onTyping($event) {
-                this.$emit('typing', $event.trim())
             }
         }
     }

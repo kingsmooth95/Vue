@@ -13,7 +13,6 @@
         <input
             v-model="computedValue"
             type="checkbox"
-            tabindex="-1"
             @click.stop
             :disabled="disabled"
             :name="name"

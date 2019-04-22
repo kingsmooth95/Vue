@@ -8,7 +8,7 @@
             :type="newType"
             :autocomplete="newAutocomplete"
             :maxlength="maxlength"
-            :value="computedValue"
+            :value="newValue"
             v-bind="$attrs"
             @input="onInput"
             @blur="onBlur"
@@ -20,7 +20,7 @@
             class="textarea"
             :class="[inputClasses, customClass]"
             :maxlength="maxlength"
-            :value="computedValue"
+            :value="newValue"
             v-bind="$attrs"
             @input="onInput"
             @blur="onBlur"
@@ -93,16 +93,6 @@
             }
         },
         computed: {
-            computedValue: {
-                get() {
-                    return this.newValue
-                },
-                set(value) {
-                    this.newValue = value
-                    this.$emit('input', value)
-                    !this.isValid && this.checkHtml5Validity()
-                }
-            },
             rootClasses() {
                 return [
                     this.iconPosition,
@@ -167,10 +157,10 @@
              * Get value length
              */
             valueLength() {
-                if (typeof this.computedValue === 'string') {
-                    return this.computedValue.length
-                } else if (typeof this.computedValue === 'number') {
-                    return this.computedValue.toString().length
+                if (typeof this.newValue === 'string') {
+                    return this.newValue.length
+                } else if (typeof this.newValue === 'number') {
+                    return this.newValue.toString().length
                 }
                 return 0
             }
@@ -179,9 +169,19 @@
             /**
              * When v-model is changed:
              *   1. Set internal value.
+             *   2. If it's invalid, validate again.
              */
             value(value) {
                 this.newValue = value
+            },
+
+            /**
+             * Update user's v-model and validate again whenever
+             * internal value is changed.
+             */
+            newValue(value) {
+                this.$emit('input', value)
+                !this.isValid && this.checkHtml5Validity()
             }
         },
         methods: {
@@ -203,11 +203,7 @@
              * before ui update, helps when using masks (Cleavejs and potentially others).
              */
             onInput(event) {
-                this.$nextTick(() => {
-                    if (event.target) {
-                        this.computedValue = event.target.value
-                    }
-                })
+                this.$nextTick(() => { this.newValue = event.target.value })
             }
         }
     }

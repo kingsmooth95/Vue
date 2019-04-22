@@ -29,11 +29,7 @@
             :current-page.sync="currentPage"
             :pagination-simple="isPaginationSimple"
             :default-sort-direction="defaultSortDirection"
-            default-sort="user.first_name"
-            aria-next-label="Next page"
-            aria-previous-label="Previous page"
-            aria-page-label="Page"
-            aria-current-label="Current page">
+            default-sort="user.first_name">
 
             <template slot-scope="props">
                 <b-table-column field="id" label="ID" width="40" sortable numeric>

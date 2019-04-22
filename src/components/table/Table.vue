@@ -14,8 +14,8 @@
                 class="table"
                 :class="tableClasses"
                 :tabindex="!focusable ? false : 0"
-                @keydown.self.prevent.up="pressedArrow(-1)"
-                @keydown.self.prevent.down="pressedArrow(1)">
+                @keydown.prevent.up="pressedArrow(-1)"
+                @keydown.prevent.down="pressedArrow(1)">
                 <thead v-if="newColumns.length">
                     <tr>
                         <th v-if="showDetailRowIcon" width="40px"/>
@@ -62,19 +62,14 @@
                 <tbody v-if="visibleData.length">
                     <template v-for="(row, index) in visibleData">
                         <tr
-                            :key="customRowKey ? row[customRowKey] : index"
+                            :key="index"
                             :class="[rowClass(row, index), {
                                 'is-selected': row === selected,
                                 'is-checked': isRowChecked(row),
                             }]"
                             @click="selectRow(row)"
                             @dblclick="$emit('dblclick', row)"
-                            @contextmenu="$emit('contextmenu', row, $event)"
-                            :draggable="draggable"
-                            @dragstart="handleDragStart($event, row, index)"
-                            @drop="handleDrop($event, row, index)"
-                            @dragover="handleDragOver($event, row, index)"
-                            @dragleave="handleDragLeave($event, row, index)">
+                            @contextmenu="$emit('contextmenu', row, $event)">
 
                             <td
                                 v-if="showDetailRowIcon"
@@ -171,11 +166,7 @@
                         :simple="paginationSimple"
                         :size="paginationSize"
                         :current="newCurrentPage"
-                        @change="pageChanged"
-                        :aria-next-label="ariaNextLabel"
-                        :aria-previous-label="ariaPreviousLabel"
-                        :aria-page-label="ariaPageLabel"
-                        :aria-current-label="ariaCurrentLabel" />
+                        @change="pageChanged"/>
                 </div>
             </div>
         </div>
@@ -275,16 +266,7 @@
                 default: 0
             },
             iconPack: String,
-            mobileSortPlaceholder: String,
-            customRowKey: String,
-            draggable: {
-                type: Boolean,
-                defualt: false
-            },
-            ariaNextLabel: String,
-            ariaPreviousLabel: String,
-            ariaPageLabel: String,
-            ariaCurrentLabel: String
+            mobileSortPlaceholder: String
         },
         data() {
             return {
@@ -748,30 +730,6 @@
                         this.sort(column, true)
                     }
                 })
-            },
-            /**
-             * Emits drag start event
-             */
-            handleDragStart(event, row, index) {
-                this.$emit('dragstart', {event, row, index})
-            },
-            /**
-             * Emits drop event
-             */
-            handleDrop(event, row, index) {
-                this.$emit('drop', {event, row, index})
-            },
-            /**
-             * Emits drag over event
-             */
-            handleDragOver(event, row, index) {
-                this.$emit('dragover', {event, row, index})
-            },
-            /**
-             * Emits drag leave event
-             */
-            handleDragLeave(event, row, index) {
-                this.$emit('dragleave', {event, row, index})
             }
         },
 

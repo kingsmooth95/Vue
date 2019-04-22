@@ -23,13 +23,6 @@ export default [
                 default: '<code>value</code>'
             },
             {
-                name: '<code>custom-formatter</code>',
-                description: 'Function to format date to a string for display in the input as alternative to <code>field</code> prop)',
-                type: 'Function',
-                values: '—',
-                default: ''
-            },
-            {
                 name: '<code>clear-on-select</code>',
                 description: 'Clear input text on select',
                 type: 'Boolean',
@@ -137,11 +130,6 @@ export default [
                 name: '<code>blur</code>',
                 description: 'Triggers when input has lost focus',
                 parameters: '<code>event: $event</code>'
-            },
-            {
-                name: '<code>typing</code>',
-                description: 'Triggers when user is typing',
-                parameters: '<code>value: String</code>'
             },
             {
                 name: '<code>[any].native</code>',

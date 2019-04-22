@@ -1,3 +1,11 @@
+<template>
+    <transition :name="transitionName">
+        <div v-show="isActive && visible" class="tab-item">
+            <slot/>
+        </div>
+    </transition>
+</template>
+
 <script>
     export default {
         name: 'BTabItem',
@@ -22,9 +30,13 @@
              * Activate tab, alter animation name based on the index.
              */
             activate(oldIndex, index) {
-                this.transitionName = index < oldIndex
-                    ? 'slide-next'
-                    : 'slide-prev'
+                if (!this.$parent.animated) {
+                    this.transitionName = null
+                } else {
+                    this.transitionName = index < oldIndex
+                        ? 'slide-next'
+                        : 'slide-prev'
+                }
                 this.isActive = true
             },
 
@@ -32,9 +44,13 @@
              * Deactivate tab, alter animation name based on the index.
              */
             deactivate(oldIndex, index) {
-                this.transitionName = index < oldIndex
-                    ? 'slide-next'
-                    : 'slide-prev'
+                if (!this.$parent.animated) {
+                    this.transitionName = null
+                } else {
+                    this.transitionName = index < oldIndex
+                        ? 'slide-next'
+                        : 'slide-prev'
+                }
                 this.isActive = false
             }
         },
@@ -49,15 +65,6 @@
             const index = this.$parent.tabItems.indexOf(this)
             if (index >= 0) {
                 this.$parent.tabItems.splice(index, 1)
-            }
-        },
-        render(createElement) {
-            if (this.isActive && this.visible) {
-                const vnode = createElement('div', { attrs: { 'class': 'tab-item' } }, this.$slots.default)
-                if (!this.$parent.animated) {
-                    return vnode
-                }
-                return createElement('transition', { props: { 'name': this.transitionName } }, [vnode])
             }
         }
     }

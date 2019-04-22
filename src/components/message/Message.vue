@@ -11,7 +11,6 @@
                     type="button"
                     class="delete"
                     @click="close"
-                    :aria-label="ariaCloseLabel"
                 />
             </header>
             <section class="message-body">
@@ -39,9 +38,6 @@
     export default {
         name: 'BMessage',
         mixins: [MessageMixin],
-        props: {
-            ariaCloseLabel: String
-        },
         data() {
             return {
                 newIconSize: this.iconSize || this.size || 'is-large'

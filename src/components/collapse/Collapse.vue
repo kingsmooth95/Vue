@@ -4,11 +4,7 @@
             <slot name="trigger" :open="isOpen" />
         </div>
         <transition :name="animation">
-            <div
-                :id="ariaId"
-                :aria-expanded="isOpen"
-                class="collapse-content"
-                v-show="isOpen">
+            <div class="collapse-content" v-show="isOpen">
                 <slot/>
             </div>
         </transition>
@@ -26,10 +22,6 @@
             animation: {
                 type: String,
                 default: 'fade'
-            },
-            ariaId: {
-                type: String,
-                default: ''
             }
         },
         data() {

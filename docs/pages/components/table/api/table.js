@@ -225,49 +225,6 @@ export default [
                 type: 'String',
                 values: '—',
                 default: '—'
-            },
-            {
-                name: '<code>custom-row-key</code>',
-                description: 'Use a unique key of your <code>data</code> Object for each row. Useful if your <code>data</code> prop has dynamic indices. (id recommended)',
-                type: 'String',
-                values: '-',
-                default: '-'
-            },
-            {
-                name: '<code>draggable</code>',
-                description: 'Allows rows to be draggable',
-                type: 'Boolean',
-                values: '—',
-                default: '<code>false</code>'
-
-            },
-            {
-                name: '<code>aria-next-label</code>',
-                description: 'Accessibility label for the next page link (if <code>paginated</code>)',
-                type: 'String',
-                values: '—',
-                default: '—'
-            },
-            {
-                name: '<code>aria-previous-label</code>',
-                description: 'Accessibility label for the previous page link (if <code>paginated</code>)',
-                type: 'String',
-                values: '—',
-                default: '—'
-            },
-            {
-                name: '<code>aria-page-label</code>',
-                description: 'Accessibility label for the page link. If passed, this text will be prepended to the number of the page (if <code>paginated</code>)',
-                type: 'String',
-                values: '—',
-                default: '—'
-            },
-            {
-                name: '<code>aria-current-label</code>',
-                description: 'Accessibility label for the current page link. If passed, this text will be prepended to the current page (if <code>paginated</code>)',
-                type: 'String',
-                values: '—',
-                default: '—'
             }
         ],
         slots: [
@@ -352,22 +309,6 @@ export default [
                 name: '<code>contextmenu</code>',
                 description: 'Triggers when right-click on a row',
                 parameters: '<code>row: Object</code>, <code>row: Object</code>'
-            },
-            {
-                name: '<code> dragstart </code>',
-                description: 'Triggers when starting to drag a row',
-                parameters: '<code> row: Object </code>, <code> dragEvent: Event </code>, <code> index: Number </code>'
-            },
-            {
-                name: '<code> drop </code>',
-                description: 'Triggers when dropping on a row',
-                parameters: '<code> row: Object </code>, <code> drop: Event </code>, <code> index: Number </code>'
-            },
-            {
-                name: '<code> dragover </code>',
-                description: 'Triggers when dragging over a row',
-                parameters: '<code> row: Object </code>, <code> dragover: Event </code>, <code> index: Number </code>'
-
             }
         ],
         methods: [

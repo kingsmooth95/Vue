@@ -328,18 +328,6 @@
             "documentation/timepicker"
         ]
     },
-    "documentation/clockpicker": {
-        "title": "Clockpicker",
-        "subtitle": "An input with a dropdown/modal clock interface for selecting a time, uses native timepicker for mobile",
-        "path": "/documentation/clockpicker",
-        "githubPath": "pages/components/clockpicker/Clockpicker.vue",
-        "menu": "documentation",
-        "breadcrumb": [
-            "/",
-            "documentation",
-            "documentation/clockpicker"
-        ]
-    },
     "documentation/taginput": {
         "title": "Taginput",
         "subtitle": "A simple tag input field that can have autocomplete functionality",
@@ -386,18 +374,6 @@
             "/",
             "documentation",
             "documentation/pagination"
-        ]
-    },
-    "documentation/button": {
-        "title": "Button",
-        "subtitle": "The classic button, in different colors, sizes, and states",
-        "path": "/documentation/button",
-        "githubPath": "pages/components/button/Button.vue",
-        "menu": "documentation",
-        "breadcrumb": [
-            "/",
-            "documentation",
-            "documentation/button"
         ]
     },
     "extensions": {

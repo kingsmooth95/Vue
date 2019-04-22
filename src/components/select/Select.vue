@@ -17,6 +17,7 @@
                     <option
                         v-if="computedValue == null"
                         :value="null"
+                        selected
                         disabled
                         hidden>
                         {{ placeholder }}

@@ -35,7 +35,7 @@
                         class="pagination field is-centered"
                         :class="size">
                         <a
-                            v-show="!isFirstMonth && !disabled"
+                            v-if="!isFirstMonth && !disabled"
                             class="pagination-previous"
                             role="button"
                             href="#"
@@ -95,7 +95,7 @@
                     </div>
                 </header>
 
-                <div class="datepicker-content">
+                <div class="datepicker-body">
                     <b-datepicker-table
                         v-model="dateSelected"
                         :day-names="dayNames"
@@ -302,15 +302,14 @@
             * dates are set by props, range of years will fall within those dates.
             */
             listOfYears() {
-                let latestYear = this.focusedDateData.year + 3
-                if (this.maxDate && this.maxDate.getFullYear() < latestYear) {
-                    latestYear = this.maxDate.getFullYear()
-                }
+                const latestYear = this.maxDate
+                ? this.maxDate.getFullYear()
+                    : (Math.max(
+                        this.dateCreator().getFullYear(),
+                        this.focusedDateData.year) + 3)
 
-                let earliestYear = (latestYear - 100) + 3
-                if (this.minDate && this.minDate.getFullYear() > earliestYear) {
-                    earliestYear = this.minDate.getFullYear()
-                }
+                const earliestYear = this.minDate
+                ? this.minDate.getFullYear() : 1900
 
                 const arrayOfYears = []
                 for (let i = earliestYear; i <= latestYear; i++) {

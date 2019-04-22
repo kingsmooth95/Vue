@@ -90,10 +90,8 @@
                     this.updateDragDropFocus(false)
                 }
                 const value = event.target.files || event.dataTransfer.files
-                if (value) {
-                    if (value.length === 0) {
-                        this.newValue = null
-                    } else if (!this.multiple) {
+                if (value && value.length) {
+                    if (!this.multiple) {
                         // only one element in case drag drop mode and isn't multiple
                         if (this.dragDrop && value.length !== 1) return false
                         else {
