@@ -7,7 +7,6 @@
             <label
                 v-if="label"
                 :for="labelFor"
-                :class="customClass"
                 class="label" >
                 {{ label }}
             </label>
